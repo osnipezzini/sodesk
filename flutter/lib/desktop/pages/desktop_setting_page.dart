@@ -85,8 +85,8 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
 
   @override
   void initState() {
+    this.checkPermission();
     super.initState();
-    checkPermission();
     selectedIndex = (widget.initialPage < 5 ? widget.initialPage : 0).obs;
     Get.put<RxInt>(selectedIndex, tag: _kSettingPageIndexTag);
     controller = PageController(initialPage: widget.initialPage);
@@ -95,15 +95,16 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
 
   void checkPermission(){
     var varAdm = String.fromEnvironment("SODESK_ADM");    
+    var admEnabled = varAdm.isNotEmpty;
 
     var varAccount = String.fromEnvironment("SODESK_ALLOW_ACCOUNT");
-    if (varAdm.isNotEmpty || varAccount.isNotEmpty) {
+    if (admEnabled || varAccount.isNotEmpty) {
       print('UI da conta habilitada');
       settingTabs.insert(2, _TabInfo('Account', Icons.person_outline, Icons.person));
     }
 
     var varID = String.fromEnvironment("SODESK_ALLOW_CHANGE_ID");
-    if (varAdm.isNotEmpty || varID.isNotEmpty) {
+    if (admEnabled || varID.isNotEmpty) {
       print('UI do servidor habilitada');
       settingTabs.insert(2, _TabInfo('Network', Icons.link_outlined, Icons.link));
     }
