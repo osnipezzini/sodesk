@@ -144,8 +144,8 @@ flutter_rust_bridge_codegen = { git = "https://github.com/SoLongAndThanksForAllT
 hound = "3.5"
 
 [package.metadata.bundle]
-name = "RustDesk"
-identifier = "com.carriez.rustdesk"
+name = "SODesk"
+identifier = "com.carriez.sodesk"
 icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
 deb_depends = ["libgtk-3-0", "libxcb-randr0", "libxdo3", "libxfixes3", "libxcb-shape0", "libxcb-xfixes0", "libasound2", "libsystemd0", "curl", "libappindicator3-1", "libvdpau1", "libva2"]
 osx_minimum_system_version = "10.14"
