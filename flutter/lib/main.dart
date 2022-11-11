@@ -57,7 +57,7 @@ Future<void> main(List<String> args) async {
         runMultiWindow(
           argument,
           kAppTypeDesktopRemote,
-          'RustDesk - Remote Desktop',
+          'SODesk - Remote Desktop',
         );
         break;
       case WindowType.FileTransfer:
@@ -65,7 +65,7 @@ Future<void> main(List<String> args) async {
         runMultiWindow(
           argument,
           kAppTypeDesktopFileTransfer,
-          'RustDesk - File Transfer',
+          'SODesk - File Transfer',
         );
         break;
       case WindowType.PortForward:
@@ -73,7 +73,7 @@ Future<void> main(List<String> args) async {
         runMultiWindow(
           argument,
           kAppTypeDesktopPortForward,
-          'RustDesk - Port Forward',
+          'SODesk - Port Forward',
         );
         break;
       default:
@@ -304,7 +304,7 @@ class _AppState extends State<App> {
         child: GetMaterialApp(
           navigatorKey: globalKey,
           debugShowCheckedModeBanner: false,
-          title: 'RustDesk',
+          title: 'SODesk',
           theme: MyTheme.lightTheme,
           darkTheme: MyTheme.darkTheme,
           themeMode: MyTheme.currentThemeMode(),

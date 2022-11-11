@@ -74,8 +74,6 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
     _TabInfo('General', Icons.settings_outlined, Icons.settings),
     _TabInfo('Security', Icons.enhanced_encryption_outlined,
         Icons.enhanced_encryption),
-    _TabInfo('Network', Icons.link_outlined, Icons.link),
-    _TabInfo('Account', Icons.person_outline, Icons.person),
     _TabInfo('About', Icons.info_outline, Icons.info)
   ];
 
@@ -88,10 +86,28 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
   @override
   void initState() {
     super.initState();
+    checkPermission();
     selectedIndex = (widget.initialPage < 5 ? widget.initialPage : 0).obs;
     Get.put<RxInt>(selectedIndex, tag: _kSettingPageIndexTag);
     controller = PageController(initialPage: widget.initialPage);
     Get.put<PageController>(controller, tag: _kSettingPageControllerTag);
+  }
+
+  void checkPermission(){
+    var varAdm = String.fromEnvironment("SODESK_ADM");    
+
+    var varAccount = String.fromEnvironment("SODESK_ALLOW_ACCOUNT");
+    if (varAdm.isNotEmpty || varAccount.isNotEmpty) {
+      print('UI da conta habilitada');
+      settingTabs.insert(2, _TabInfo('Account', Icons.person_outline, Icons.person));
+    }
+
+    var varID = String.fromEnvironment("SODESK_ALLOW_CHANGE_ID");
+    if (varAdm.isNotEmpty || varID.isNotEmpty) {
+      print('UI do servidor habilitada');
+      settingTabs.insert(2, _TabInfo('Network', Icons.link_outlined, Icons.link));
+    }
+    
   }
 
   @override
@@ -1040,7 +1056,7 @@ class _AboutState extends State<_About> {
           child: SingleChildScrollView(
             controller: scrollController,
             physics: NeverScrollableScrollPhysics(),
-            child: _Card(title: 'About RustDesk', children: [
+            child: _Card(title: 'About SODesk', children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

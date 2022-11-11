@@ -31,7 +31,7 @@ pub fn start_tray() {
     let mut tray_icon = TrayIconBuilder::new()
         .sender_winit(proxy)
         .icon_from_buffer(icon)
-        .tooltip("RustDesk")
+        .tooltip("SODesk")
         .on_double_click(Events::DoubleClickTrayIcon)
         .build()
         .unwrap();
@@ -157,8 +157,8 @@ fn get_default_app_indicator() -> Option<AppIndicator> {
         }
     }
     debug!("write temp icon complete");
-    let mut appindicator = AppIndicator::new("RustDesk", icon_path.to_str().unwrap_or("rustdesk"));
-    appindicator.set_label("RustDesk", "A remote control software.");
+    let mut appindicator = AppIndicator::new("SODesk", icon_path.to_str().unwrap_or("rustdesk"));
+    appindicator.set_label("SODesk", "A remote control software.");
     appindicator.set_status(AppIndicatorStatus::Active);
     Some(appindicator)
 }
