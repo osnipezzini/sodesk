@@ -13,7 +13,7 @@ const String kWindowActionRebuild = "rebuild";
 const String kWindowEventHide = "hide";
 const String kWindowEventShow = "show";
 
-const String kUniLinksPrefix = "rustdesk://";
+const String kUniLinksPrefix = "sodesk://";
 const String kActionNewConnection = "connection/new/";
 
 const String kTabLabelHomePage = "Home";

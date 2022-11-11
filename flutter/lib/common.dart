@@ -1244,10 +1244,10 @@ void checkArguments() {
   }
 }
 
-/// Parse `rustdesk://` unilinks
+/// Parse `sodesk://` unilinks
 ///
 /// [Functions]
-/// 1. New Connection: rustdesk://connection/new/your_peer_id
+/// 1. New Connection: sodesk://connection/new/your_peer_id
 void parseRustdeskUri(String uriPath) {
   final uri = Uri.tryParse(uriPath);
   if (uri == null) {
