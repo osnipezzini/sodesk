@@ -280,20 +280,22 @@ def build_flutter_windows(version, features):
         exit(-1)
     os.chdir('flutter')
     os.system('flutter build windows --release')
-    return
     os.chdir('..')
-    os.chdir('libs/portable')
-    os.system('pip3 install -r requirements.txt')
-    os.system(
-        f'python3 ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/rustdesk.exe')
-    os.chdir('../..')
-    if os.path.exists('./rustdesk_portable.exe'):
-        os.replace('./target/release/rustdesk-portable-packer.exe', './rustdesk_portable.exe')
-    else:
-        os.rename('./target/release/rustdesk-portable-packer.exe', './rustdesk_portable.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/rustdesk_portable.exe')
-    os.rename('./rustdesk_portable.exe', f'./rustdesk-{version}-install.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/rustdesk-{version}-install.exe')
+    for file in pathlib.Path('./target/release').glob("**/*.exe"):
+        print(file)
+        continue
+        os.chdir('libs/portable')
+        os.system('pip3 install -r requirements.txt')
+        os.system(
+            f'python3 ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/sodesk.exe')
+        os.chdir('../..')
+        if os.path.exists('./sodesk_portable.exe'):
+            os.replace('./target/release/sodesk-portable-packer.exe', './sodesk_portable.exe')
+        else:
+            os.rename('./target/release/sodesk-portable-packer.exe', './sodesk_portable.exe')
+        print(f'output location: {os.path.abspath(os.curdir)}/sodesk_portable.exe')
+        os.rename('./sodeskk_portable.exe', f'./sodesk-{version}-install.exe')
+        print(f'output location: {os.path.abspath(os.curdir)}/sodesk-{version}-install.exe')
 
 
 def main():
