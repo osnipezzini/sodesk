@@ -11,7 +11,7 @@ length_count = 4
 # encoding
 encoding = 'utf-8'
 
-from build import hbb_name
+hbb_name = "sodesk"
 
 # output: {path: (compressed_data, file_md5)}
 
