@@ -280,6 +280,7 @@ def build_flutter_windows(version, features):
         exit(-1)
     os.chdir('flutter')
     os.system('flutter build windows --release')
+    return
     os.chdir('..')
     os.chdir('libs/portable')
     os.system('pip3 install -r requirements.txt')
