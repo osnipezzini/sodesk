@@ -11,7 +11,7 @@ import argparse
 
 windows = platform.platform().startswith('Windows')
 osx = platform.platform().startswith('Darwin') or platform.platform().startswith("macOS")
-hbb_name = 'sodesk' + ('.exe' if windows else '')
+hbb_name = 'rustdesk' + ('.exe' if windows else '')
 exe_path = 'target/release/' + hbb_name
 flutter_win_target_dir = 'flutter/build/windows/runner/Release/'
 
@@ -84,7 +84,7 @@ def make_parser():
     parser.add_argument(
         '--flatpak',
         action='store_true',
-        help='Build sodesk libs with the flatpak feature enabled'
+        help='Build rustdesk libs with the flatpak feature enabled'
     )
     return parser
 
@@ -118,7 +118,7 @@ def generate_build_script_for_docker():
             vcpkg/bootstrap-vcpkg.sh
             vcpkg/vcpkg install libvpx libyuv opus
             popd
-            # build sodesk
+            # build rustdesk
             ./build.py --flutter --hwcodec
         ''')
     os.system("chmod +x /tmp/build.sh")
@@ -203,11 +203,11 @@ def generate_control_file(version):
     control_file_path = "../res/DEBIAN/control"
     os.system('/bin/rm -rf %s' % control_file_path)
 
-    content = """Package: sodesk
+    content = """Package: rustdesk
 Version: %s
 Architecture: amd64
-Maintainer: open-trade <info@sodesk.com>
-Homepage: https://sodesk.com
+Maintainer: open-trade <info@rustdesk.com>
+Homepage: https://rustdesk.com
 Depends: libgtk-3-0, libxcb-randr0, libxdo3, libxfixes3, libxcb-shape0, libxcb-xfixes0, libasound2, libsystemd0, pipewire, curl, libappindicator3-1, libva-drm2, libva-x11-2, libvdpau1
 Description: A remote control software.
 
@@ -227,39 +227,39 @@ def build_flutter_deb(version, features):
     os.system(f'cargo build --features {features} --lib --release')
     ffi_bindgen_function_refactor()
     os.chdir('flutter')
-    os.system('dpkg-deb -R sodesk.deb tmpdeb')
+    os.system('dpkg-deb -R rustdesk.deb tmpdeb')
     os.system('flutter build linux --release')
     os.system('mkdir -p tmpdeb/usr/bin/')
-    os.system('mkdir -p tmpdeb/usr/lib/sodesk')
-    os.system('mkdir -p tmpdeb/usr/share/sodesk/files/systemd/')
+    os.system('mkdir -p tmpdeb/usr/lib/rustdesk')
+    os.system('mkdir -p tmpdeb/usr/share/rustdesk/files/systemd/')
     os.system('mkdir -p tmpdeb/usr/share/applications/')
     os.system('mkdir -p tmpdeb/usr/share/polkit-1/actions')
 
-    os.system('rm tmpdeb/usr/bin/sodesk')
+    os.system('rm tmpdeb/usr/bin/rustdesk')
     os.system(
-        'cp -r build/linux/x64/release/bundle/* tmpdeb/usr/lib/sodesk/')
+        'cp -r build/linux/x64/release/bundle/* tmpdeb/usr/lib/rustdesk/')
     os.system(
-        'cp ../res/sodesk.service tmpdeb/usr/share/sodesk/files/systemd/')
+        'cp ../res/rustdesk.service tmpdeb/usr/share/rustdesk/files/systemd/')
     os.system(
-        'cp ../res/128x128@2x.png tmpdeb/usr/share/sodesk/files/sodesk.png')
+        'cp ../res/128x128@2x.png tmpdeb/usr/share/rustdesk/files/rustdesk.png')
     os.system(
-        'cp ../res/sodesk.desktop tmpdeb/usr/share/applications/sodesk.desktop')
+        'cp ../res/rustdesk.desktop tmpdeb/usr/share/applications/rustdesk.desktop')
     os.system(
-        'cp ../res/sodesk-link.desktop tmpdeb/usr/share/applications/sodesk-link.desktop')
+        'cp ../res/rustdesk-link.desktop tmpdeb/usr/share/applications/rustdesk-link.desktop')
     os.system(
-        'cp ../res/com.sodesk.RustDesk.policy tmpdeb/usr/share/polkit-1/actions/')
+        'cp ../res/com.rustdesk.RustDesk.policy tmpdeb/usr/share/polkit-1/actions/')
     os.system(
-        "echo \"#!/bin/sh\" >> tmpdeb/usr/share/sodesk/files/polkit && chmod a+x tmpdeb/usr/share/sodesk/files/polkit")
+        "echo \"#!/bin/sh\" >> tmpdeb/usr/share/rustdesk/files/polkit && chmod a+x tmpdeb/usr/share/rustdesk/files/polkit")
 
     os.system('mkdir -p tmpdeb/DEBIAN')
     generate_control_file(version)
     os.system('cp -a ../res/DEBIAN/* tmpdeb/DEBIAN/')
-    md5_file('usr/share/sodesk/files/systemd/sodesk.service')
-    os.system('dpkg-deb -b tmpdeb sodesk.deb;')
+    md5_file('usr/share/rustdesk/files/systemd/rustdesk.service')
+    os.system('dpkg-deb -b tmpdeb rustdesk.deb;')
 
     os.system('/bin/rm -rf tmpdeb/')
     os.system('/bin/rm -rf ../res/DEBIAN/control')
-    os.rename('sodesk.deb', '../sodesk-%s.deb' % version)
+    os.rename('rustdesk.deb', '../rustdesk-%s.deb' % version)
     os.chdir("..")
 
 
@@ -284,15 +284,15 @@ def build_flutter_windows(version, features):
     os.chdir('libs/portable')
     os.system('pip3 install -r requirements.txt')
     os.system(
-        f'python3 ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/sodesk.exe')
+        f'python3 ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/rustdesk.exe')
     os.chdir('../..')
-    if os.path.exists('./sodesk_portable.exe'):
-        os.replace('./target/release/sodesk-portable-packer.exe', './sodesk_portable.exe')
+    if os.path.exists('./rustdesk_portable.exe'):
+        os.replace('./target/release/rustdesk-portable-packer.exe', './rustdesk_portable.exe')
     else:
-        os.rename('./target/release/sodesk-portable-packer.exe', './sodesk_portable.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/sodesk_portable.exe')
-    os.rename('./sodesk_portable.exe', f'./sodesk-{version}-install.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/sodesk-{version}-install.exe')
+        os.rename('./target/release/rustdesk-portable-packer.exe', './rustdesk_portable.exe')
+    print(f'output location: {os.path.abspath(os.curdir)}/rustdesk_portable.exe')
+    os.rename('./rustdesk_portable.exe', f'./rustdesk-{version}-install.exe')
+    print(f'output location: {os.path.abspath(os.curdir)}/rustdesk-{version}-install.exe')
 
 
 def main():
@@ -320,16 +320,16 @@ def main():
             build_flutter_windows(version, features)
             return
         os.system('cargo build --release --features ' + features)
-        # os.system('upx.exe target/release/sodesk.exe')
-        os.system('mv target/release/sodesk.exe target/release/RustDesk.exe')
+        # os.system('upx.exe target/release/rustdesk.exe')
+        os.system('mv target/release/rustdesk.exe target/release/RustDesk.exe')
         pa = os.environ.get('P')
         if pa:
             os.system(
                 f'signtool sign /a /v /p {pa} /debug /f .\\cert.pfx /t http://timestamp.digicert.com  '
-                'target\\release\\sodesk.exe')
+                'target\\release\\rustdesk.exe')
         else:
             print('Not signed')
-        os.system(f'cp -rf target/release/RustDesk.exe sodesk-{version}-win7-install.exe')
+        os.system(f'cp -rf target/release/RustDesk.exe rustdesk-{version}-win7-install.exe')
     elif os.path.isfile('/usr/bin/pacman'):
         # pacman -S -needed base-devel
         os.system("sed -i 's/pkgver=.*/pkgver=%s/g' res/PKGBUILD" % version)
@@ -338,30 +338,30 @@ def main():
         else:
             os.system('cargo build --release --features ' + features)
             os.system('git checkout src/ui/common.tis')
-            os.system('strip target/release/sodesk')
+            os.system('strip target/release/rustdesk')
             os.system('ln -s res/pacman_install && ln -s res/PKGBUILD')
             os.system('HBB=`pwd` makepkg -f')
-        os.system('mv sodesk-%s-0-x86_64.pkg.tar.zst sodesk-%s-manjaro-arch.pkg.tar.zst' % (
+        os.system('mv rustdesk-%s-0-x86_64.pkg.tar.zst rustdesk-%s-manjaro-arch.pkg.tar.zst' % (
         version, version))
-        # pacman -U ./sodesk.pkg.tar.zst
+        # pacman -U ./rustdesk.pkg.tar.zst
     elif os.path.isfile('/usr/bin/yum'):
         os.system('cargo build --release --features ' + features)
-        os.system('strip target/release/sodesk')
+        os.system('strip target/release/rustdesk')
         os.system("sed -i 's/Version:    .*/Version:    %s/g' res/rpm.spec" % version)
         os.system('HBB=`pwd` rpmbuild -ba res/rpm.spec')
         os.system(
-            'mv $HOME/rpmbuild/RPMS/x86_64/sodesk-%s-0.x86_64.rpm ./sodesk-%s-fedora28-centos8.rpm' % (
+            'mv $HOME/rpmbuild/RPMS/x86_64/rustdesk-%s-0.x86_64.rpm ./rustdesk-%s-fedora28-centos8.rpm' % (
                 version, version))
-        # yum localinstall sodesk.rpm
+        # yum localinstall rustdesk.rpm
     elif os.path.isfile('/usr/bin/zypper'):
         os.system('cargo build --release --features ' + features)
-        os.system('strip target/release/sodesk')
+        os.system('strip target/release/rustdesk')
         os.system("sed -i 's/Version:    .*/Version:    %s/g' res/rpm-suse.spec" % version)
         os.system('HBB=`pwd` rpmbuild -ba res/rpm-suse.spec')
         os.system(
-            'mv $HOME/rpmbuild/RPMS/x86_64/sodesk-%s-0.x86_64.rpm ./sodesk-%s-suse.rpm' % (
+            'mv $HOME/rpmbuild/RPMS/x86_64/rustdesk-%s-0.x86_64.rpm ./rustdesk-%s-suse.rpm' % (
             version, version))
-        # yum localinstall sodesk.rpm
+        # yum localinstall rustdesk.rpm
     else:
         os.system('cargo bundle --release --features ' + features)
         if flutter:
@@ -370,12 +370,12 @@ def main():
                 pass
             else:
                 os.system(
-                    'mv target/release/bundle/deb/sodesk*.deb ./flutter/sodesk.deb')
+                    'mv target/release/bundle/deb/rustdesk*.deb ./flutter/rustdesk.deb')
                 build_flutter_deb(version, features)
         else:
             if osx:
                 os.system(
-                    'strip target/release/bundle/osx/RustDesk.app/Contents/MacOS/sodesk')
+                    'strip target/release/bundle/osx/RustDesk.app/Contents/MacOS/rustdesk')
                 os.system(
                     'cp libsciter.dylib target/release/bundle/osx/RustDesk.app/Contents/MacOS/')
                 # https://github.com/sindresorhus/create-dmg
@@ -391,22 +391,22 @@ def main():
                 if pa:
                     os.system('''
     # buggy: rcodesign sign ... path/*, have to sign one by one
-    #rcodesign sign --p12-file ~/.p12/sodesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/sodesk
-    #rcodesign sign --p12-file ~/.p12/sodesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/libsciter.dylib
-    #rcodesign sign --p12-file ~/.p12/sodesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/rustdesk
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/libsciter.dylib
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./target/release/bundle/osx/RustDesk.app
     # goto "Keychain Access" -> "My Certificates" for below id which starts with "Developer ID Application:"
     codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/RustDesk.app/Contents/MacOS/*
     codesign -s "Developer ID Application: {0}" --force --options runtime  ./target/release/bundle/osx/RustDesk.app
     '''.format(pa))
                 os.system('create-dmg target/release/bundle/osx/RustDesk.app')
                 os.rename('RustDesk %s.dmg' %
-                          version, 'sodesk-%s.dmg' % version)
+                          version, 'rustdesk-%s.dmg' % version)
                 if pa:
                     os.system('''
-    #rcodesign sign --p12-file ~/.p12/sodesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./sodesk-{1}.dmg
-    codesign -s "Developer ID Application: {0}" --force --options runtime ./sodesk-{1}.dmg
+    #rcodesign sign --p12-file ~/.p12/rustdesk-developer-id.p12 --p12-password-file ~/.p12/.cert-pass --code-signature-flags runtime ./rustdesk-{1}.dmg
+    codesign -s "Developer ID Application: {0}" --force --options runtime ./rustdesk-{1}.dmg
     # https://pyoxidizer.readthedocs.io/en/latest/apple_codesign_rcodesign.html
-    rcodesign notarize --api-issuer 69a6de7d-2907-47e3-e053-5b8c7c11a4d1 --api-key 9JBRHG3JHT --staple ./sodesk-{1}.dmg
+    rcodesign notarize --api-issuer 69a6de7d-2907-47e3-e053-5b8c7c11a4d1 --api-key 9JBRHG3JHT --staple ./rustdesk-{1}.dmg
     # verify:  spctl -a -t exec -v /Applications/RustDesk.app
     '''.format(pa, version))
                 else:
@@ -414,26 +414,26 @@ def main():
             else:
                 # buid deb package
                 os.system(
-                    'mv target/release/bundle/deb/sodesk*.deb ./sodesk.deb')
-                os.system('dpkg-deb -R sodesk.deb tmpdeb')
-                os.system('mkdir -p tmpdeb/usr/share/sodesk/files/systemd/')
+                    'mv target/release/bundle/deb/rustdesk*.deb ./rustdesk.deb')
+                os.system('dpkg-deb -R rustdesk.deb tmpdeb')
+                os.system('mkdir -p tmpdeb/usr/share/rustdesk/files/systemd/')
                 os.system(
-                    'cp res/sodesk.service tmpdeb/usr/share/sodesk/files/systemd/')
+                    'cp res/rustdesk.service tmpdeb/usr/share/rustdesk/files/systemd/')
                 os.system(
-                    'cp res/128x128@2x.png tmpdeb/usr/share/sodesk/files/sodesk.png')
+                    'cp res/128x128@2x.png tmpdeb/usr/share/rustdesk/files/rustdesk.png')
                 os.system(
-                    'cp res/sodesk.desktop tmpdeb/usr/share/applications/sodesk.desktop')
+                    'cp res/rustdesk.desktop tmpdeb/usr/share/applications/rustdesk.desktop')
                 os.system(
-                    'cp res/sodesk-link.desktop tmpdeb/usr/share/applications/sodesk-link.desktop')
+                    'cp res/rustdesk-link.desktop tmpdeb/usr/share/applications/rustdesk-link.desktop')
                 os.system('cp -a res/DEBIAN/* tmpdeb/DEBIAN/')
-                os.system('strip tmpdeb/usr/bin/sodesk')
-                os.system('mkdir -p tmpdeb/usr/lib/sodesk')
-                os.system('mv tmpdeb/usr/bin/sodesk tmpdeb/usr/lib/sodesk/')
-                os.system('cp libsciter-gtk.so tmpdeb/usr/lib/sodesk/')
-                md5_file('usr/share/sodesk/files/systemd/sodesk.service')
-                md5_file('usr/lib/sodesk/libsciter-gtk.so')
-                os.system('dpkg-deb -b tmpdeb sodesk.deb; /bin/rm -rf tmpdeb/')
-                os.rename('sodesk.deb', 'sodesk-%s.deb' % version)
+                os.system('strip tmpdeb/usr/bin/rustdesk')
+                os.system('mkdir -p tmpdeb/usr/lib/rustdesk')
+                os.system('mv tmpdeb/usr/bin/rustdesk tmpdeb/usr/lib/rustdesk/')
+                os.system('cp libsciter-gtk.so tmpdeb/usr/lib/rustdesk/')
+                md5_file('usr/share/rustdesk/files/systemd/rustdesk.service')
+                md5_file('usr/lib/rustdesk/libsciter-gtk.so')
+                os.system('dpkg-deb -b tmpdeb rustdesk.deb; /bin/rm -rf tmpdeb/')
+                os.rename('rustdesk.deb', 'rustdesk-%s.deb' % version)
     os.system("mv Cargo.toml.bk Cargo.toml")
     os.system("mv src/main.rs.bk src/main.rs")
 
