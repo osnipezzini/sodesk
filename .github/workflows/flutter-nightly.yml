@@ -82,10 +82,10 @@ jobs:
           $VCPKG_ROOT/vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static
         shell: bash
 
-      - name: Build rustdesk
+      - name: Build sodesk
         run: python3 .\build.py --portable --hwcodec --flutter
 
-      - name: Rename rustdesk
+      - name: Rename sodesk
         shell: bash
         run: |
           for name in sodesk*??-install.exe; do
