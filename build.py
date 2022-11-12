@@ -287,13 +287,13 @@ def build_flutter_windows(version, features):
     os.chdir('libs/portable')
     os.system(f'{pip_exe} install -r requirements.txt')
     print('Finalizado compilação flutter')
-    for file in pathlib.Path(f'../../{flutter_win_target_dir}'):
+    for file in pathlib.Path(f'../../{flutter_win_target_dir}').glob("**/*.*"):
         print(file)
     os.system(
         f'{python_exe} ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/{hbb_name}.exe')
     os.chdir('../..')
     print('Finalizado geração do portable')
-    for file in pathlib.Path('./target/release'):
+    for file in pathlib.Path('./target/release').glob("**/*.*"):
         print(file)
     if os.path.exists(f'./{hbb_name}_portable.exe'):
         os.replace(f'./target/release/{hbb_name}-portable-packer.exe', f'./{hbb_name}_portable.exe')
