@@ -88,7 +88,7 @@ jobs:
       - name: Rename rustdesk
         shell: bash
         run: |
-          for name in rustdesk*??-install.exe; do
+          for name in sodesk*??-install.exe; do
               mv "$name" "${name%%-install.exe}-${{ matrix.job.target }}.exe"
           done
 
@@ -98,5 +98,5 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            rustdesk-*.exe
+            sodesk-*.exe
 

@@ -1,11 +1,11 @@
 [package]
-name = "rustdesk"
+name = "sodesk"
 version = "1.2.0"
 authors = ["rustdesk <info@rustdesk.com>"]
 edition = "2021"
 build= "build.rs"
 description = "A remote control software."
-default-run = "rustdesk"
+default-run = "sodesk"
 
 [lib]
 name = "librustdesk"
