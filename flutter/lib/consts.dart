@@ -22,7 +22,7 @@ const String kTabLabelSettingPage = "Settings";
 const String kWindowPrefix = "wm_";
 
 // the executable name of the portable version
-const String kEnvPortableExecutable = "RUSTDESK_APPNAME";
+const String kEnvPortableExecutable = "SODESK_APP_NAME";
 
 const Color kColorWarn = Color.fromARGB(255, 245, 133, 59);
 
