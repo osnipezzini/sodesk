@@ -10,8 +10,8 @@
 
 #include <uni_links_desktop/uni_links_desktop_plugin.h>
 
-typedef char** (*FUNC_RUSTDESK_CORE_MAIN)(int*);
-typedef void (*FUNC_RUSTDESK_FREE_ARGS)( char**, int);
+typedef char** (*FUNC_SODESK_CORE_MAIN)(int*);
+typedef void (*FUNC_SODESK_FREE_ARGS)( char**, int);
 const char* uniLinksPrefix = "sodesk://";
 
 // auto bdw = bitsdojo_window_configure(BDW_CUSTOM_FRAME | BDW_HIDE_ON_STARTUP);
@@ -24,15 +24,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
     std::cout << "Failed to load libsodesk.dll" << std::endl;
     return EXIT_FAILURE;
   }
-  FUNC_RUSTDESK_CORE_MAIN sodesk_core_main =
-      (FUNC_RUSTDESK_CORE_MAIN)GetProcAddress(hInstance, "sodesk_core_main");
+  FUNC_SODESK_CORE_MAIN sodesk_core_main =
+      (FUNC_SODESK_CORE_MAIN)GetProcAddress(hInstance, "sodesk_core_main");
   if (!sodesk_core_main)
   {
     std::cout << "Failed to get sodesk_core_main" << std::endl;
     return EXIT_FAILURE;
   }
-  FUNC_RUSTDESK_FREE_ARGS free_c_args =
-      (FUNC_RUSTDESK_FREE_ARGS)GetProcAddress(hInstance, "free_c_args");
+  FUNC_SODESK_FREE_ARGS free_c_args =
+      (FUNC_SODESK_FREE_ARGS)GetProcAddress(hInstance, "free_c_args");
   if (!free_c_args)
   {
     std::cout << "Failed to get free_c_args" << std::endl;

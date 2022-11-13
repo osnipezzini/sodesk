@@ -1,12 +1,12 @@
 #include <dlfcn.h>
 #include "my_application.h"
 
-#define RUSTDESK_LIB_PATH "libsodesk.so"
-// #define RUSTDESK_LIB_PATH "/usr/lib/sodesk/libsodesk.so"
+#define SODESK_LIB_PATH "libsodesk.so"
+// #define SODESK_LIB_PATH "/usr/lib/sodesk/libsodesk.so"
 typedef bool (*RustDeskCoreMain)();
 
 bool flutter_sodesk_core_main() {
-   void* libsodesk = dlopen(RUSTDESK_LIB_PATH, RTLD_LAZY);
+   void* libsodesk = dlopen(SODESK_LIB_PATH, RTLD_LAZY);
    if (!libsodesk) {
      fprintf(stderr,"load libsodesk.so failed\n");
      return true;
