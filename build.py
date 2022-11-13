@@ -16,7 +16,7 @@ hbb_name_case = 'SODesk' + ('.exe' if windows else '')
 exe_path = 'target/release/' + hbb_name
 python_exe = 'python' if windows else 'python3'
 pip_exe = 'pip' if windows else 'pip3'
-flutter_win_target_dir = 'flutter/build/windows/runner/Release/'
+flutter_win_target_dir = pathlib.Path('flutter/build/windows/runner/Release/')
 
 
 def get_version():
@@ -286,14 +286,18 @@ def build_flutter_windows(version, features):
     os.chdir('..')    
     os.chdir('libs/portable')
     os.system(f'{pip_exe} install -r requirements.txt')
+    if flutter_win_target_dir.joinpath('rustdesk.exe').exists():
+        flutter_win_target_dir.joinpath('rustdesk.exe').rename(flutter_win_target_dir.joinpath(hbb_name))
     os.system(
         f'{python_exe} ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/{hbb_name}.exe')
     os.chdir('../..')
     print('Finalizado geração do portable')
+    if flutter_win_target_dir.joinpath('./target/release/rustdesk-portable-packer.exe').exists():
+        flutter_win_target_dir.joinpath('./target/release/rustdesk-portable-packer.exe').rename(flutter_win_target_dir.joinpath(flutter_win_target_dir.joinpath(f'./target/release/{hbb_name}-portable-packer.exe')))
     if os.path.exists(f'./{hbb_name}_portable.exe'):
         os.replace(f'./target/release/{hbb_name}-portable-packer.exe', f'./{hbb_name}_portable.exe')
     else:
-        os.rename(f'./target/release/rustdesk-portable-packer.exe', f'./{hbb_name}_portable.exe')
+        os.rename(f'./target/release/{hbb_name}-portable-packer.exe', f'./{hbb_name}_portable.exe')
     print(f'output location: {os.path.abspath(os.curdir)}/{hbb_name}_portable.exe')
     os.rename(f'./{hbb_name}_portable.exe', f'./{hbb_name}-{version}-install.exe')
     print(f'output location: {os.path.abspath(os.curdir)}/{hbb_name}-{version}-install.exe')
