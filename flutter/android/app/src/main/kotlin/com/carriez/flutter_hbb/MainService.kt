@@ -69,7 +69,7 @@ const val AUDIO_CHANNEL_MASK = AudioFormat.CHANNEL_IN_STEREO
 class MainService : Service() {
 
     init {
-        System.loadLibrary("rustdesk")
+        System.loadLibrary("sodesk")
     }
 
     @Keep
@@ -143,7 +143,7 @@ class MainService : Service() {
     private var serviceHandler: Handler? = null
 
     private val powerManager: PowerManager by lazy { applicationContext.getSystemService(Context.POWER_SERVICE) as PowerManager }
-    private val wakeLock: PowerManager.WakeLock by lazy { powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "rustdesk:wakelock")}
+    private val wakeLock: PowerManager.WakeLock by lazy { powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "sodesk:wakelock")}
 
     // jvm call rust
     private external fun init(ctx: Context)

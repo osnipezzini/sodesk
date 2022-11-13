@@ -20,7 +20,7 @@ sciter.dll
 **pdb
 src/bridge_generated.rs
 *deb
-rustdesk
+sodesk
 *.cache
 # appimage
 appimage/AppDir

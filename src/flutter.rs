@@ -27,11 +27,11 @@ lazy_static::lazy_static! {
     pub static ref GLOBAL_EVENT_STREAM: RwLock<HashMap<String, StreamSink<String>>> = Default::default(); // rust to dart event channel
 }
 
-/// FFI for rustdesk core's main entry.
+/// FFI for sodesk core's main entry.
 /// Return true if the app should continue running with UI(possibly Flutter), false if the app should exit.
 #[cfg(not(windows))]
 #[no_mangle]
-pub extern "C" fn rustdesk_core_main() -> bool {
+pub extern "C" fn sodesk_core_main() -> bool {
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     return crate::core_main::core_main().is_some();
     #[cfg(any(target_os = "android", target_os = "ios"))]
@@ -40,7 +40,7 @@ pub extern "C" fn rustdesk_core_main() -> bool {
 
 #[cfg(windows)]
 #[no_mangle]
-pub extern "C" fn rustdesk_core_main(args_len: *mut c_int) -> *mut *mut c_char {
+pub extern "C" fn sodesk_core_main(args_len: *mut c_int) -> *mut *mut c_char {
     unsafe { std::ptr::write(args_len, 0) };
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     {

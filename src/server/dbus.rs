@@ -1,7 +1,7 @@
 /// Url handler based on dbus
 ///
 /// Note:
-/// On linux, we use dbus to communicate multiple rustdesk process.
+/// On linux, we use dbus to communicate multiple sodesk process.
 /// [Flutter]: handle uni links for linux
 use dbus::blocking::Connection;
 use dbus_crossroads::{Crossroads, IfaceBuilder};
@@ -34,7 +34,7 @@ impl Error for DbusError {}
 /// [Tips]:
 /// How to test by CLI:
 /// - use dbus-send command:
-/// `dbus-send --session --print-reply --dest=org.rustdesk.rustdesk /dbus org.rustdesk.rustdesk.NewConnection string:'PEER_ID'`
+/// `dbus-send --session --print-reply --dest=org.sodesk.sodesk /dbus org.sodesk.sodesk.NewConnection string:'PEER_ID'`
 pub fn invoke_new_connection(peer_id: String) -> Result<(), Box<dyn Error>> {
     let conn = Connection::new_session()?;
     let proxy = conn.with_proxy(DBUS_NAME, DBUS_PREFIX, DBUS_TIMEOUT);

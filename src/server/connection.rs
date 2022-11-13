@@ -1193,7 +1193,7 @@ impl Connection {
                             }
                             Some(file_action::Union::Receive(r)) => {
                                 // note: 1.1.10 introduced identical file detection, which breaks original logic of send/recv files
-                                // whenever got send/recv request, check peer version to ensure old version of rustdesk
+                                // whenever got send/recv request, check peer version to ensure old version of sodesk
                                 let od = can_enable_overwrite_detection(get_version_number(
                                     &self.lr.version,
                                 ));

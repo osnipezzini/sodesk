@@ -282,7 +282,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Overwrite", "Перезаписати"),
         ("This file exists, skip or overwrite this file?", "Цей файл існує, пропустити або перезаписати файл?"),
         ("Quit", "Вийти"),
-        ("doc_mac_permission", "https://rustdesk.com/docs/ru/manual/mac/#увімкнення дозволів"),
+        ("doc_mac_permission", "https://sodesk.com/docs/ru/manual/mac/#увімкнення дозволів"),
         ("Help", "Допомога"),
         ("Failed", "Не вдалося"),
         ("Succeeded", "Успішно"),

@@ -37,7 +37,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>rustdesk</string>
+				<string>sodesk</string>
 			</array>
 		</dict>
 	</array>

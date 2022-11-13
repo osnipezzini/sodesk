@@ -210,7 +210,7 @@ fn set_x11_env(uid: &str) {
     std::env::set_var("DISPLAY", d);
 }
 
-fn stop_rustdesk_servers() {
+fn stop_sodesk_servers() {
     let _ = run_cmds(format!(
         r##"ps -ef | grep -E 'sodesk +--server' | awk '{{printf("kill -9 %d\n", $2)}}' | bash"##,
     ));
@@ -266,7 +266,7 @@ fn should_start_server(
 }
 
 pub fn start_os_service() {
-    stop_rustdesk_servers();
+    stop_sodesk_servers();
     start_uinput_service();
 
     let running = Arc::new(AtomicBool::new(true));
@@ -298,8 +298,8 @@ pub fn start_os_service() {
                 &mut server,
             ) {
                 // to-do: stop_server(&mut user_server); may not stop child correctly
-                // stop_rustdesk_servers() is just a temp solution here.
-                stop_rustdesk_servers();
+                // stop_sodesk_servers() is just a temp solution here.
+                stop_sodesk_servers();
                 std::thread::sleep(std::time::Duration::from_millis(super::SERVICE_INTERVAL));
                 match crate::run_me(vec!["--server"]) {
                     Ok(ps) => server = Some(ps),
@@ -322,7 +322,7 @@ pub fn start_os_service() {
                     &mut last_restart,
                     &mut user_server,
                 ) {
-                    stop_rustdesk_servers();
+                    stop_sodesk_servers();
                     std::thread::sleep(std::time::Duration::from_millis(super::SERVICE_INTERVAL));
                     match run_as_user("--server", Some((cur_uid, cur_user))) {
                         Ok(ps) => user_server = ps,
@@ -333,7 +333,7 @@ pub fn start_os_service() {
                 }
             }
         } else {
-            stop_rustdesk_servers();
+            stop_sodesk_servers();
             std::thread::sleep(std::time::Duration::from_millis(super::SERVICE_INTERVAL));
             stop_server(&mut user_server);
             stop_server(&mut server);

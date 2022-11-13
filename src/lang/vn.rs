@@ -282,7 +282,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Overwrite", "Ghi đè"),
         ("This file exists, skip or overwrite this file?", "Tệp tin này đã tồn tại, bạn có muốn bỏ qua hay ghi đè lên tệp tin này?"),
         ("Quit", "Thoát"),
-        ("doc_mac_permission", "https://rustdesk.com/docs/en/manual/mac/#enable-permissions"),
+        ("doc_mac_permission", "https://sodesk.com/docs/en/manual/mac/#enable-permissions"),
         ("Help", "Giúp đỡ"),
         ("Failed", "Thất bại"),
         ("Succeeded", "Thành công"),

@@ -4,7 +4,7 @@ import FlutterMacOS
 
 class MainFlutterWindow: NSWindow {
     override func awakeFromNib() {
-        if (!rustdesk_core_main()){
+        if (!sodesk_core_main()){
             print("Rustdesk core returns false, exiting without launching Flutter app")
             NSApplication.shared.terminate(self)
         }

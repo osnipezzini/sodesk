@@ -65,8 +65,8 @@ def build_portable(output_folder: str):
     os.chdir(output_folder)
     os.system("cargo build --release")
 
-# Linux: python3 generate.py -f ../rustdesk-portable-packer/test -o . -e ./test/main.py
-# Windows: python3 .\generate.py -f ..\rustdesk\flutter\build\windows\runner\Debug\ -o . -e ..\rustdesk\flutter\build\windows\runner\Debug\rustdesk.exe
+# Linux: python3 generate.py -f ../sodesk-portable-packer/test -o . -e ./test/main.py
+# Windows: python3 .\generate.py -f ..\sodesk\flutter\build\windows\runner\Debug\ -o . -e ..\sodesk\flutter\build\windows\runner\Debug\sodesk.exe
 if __name__ == '__main__':
     parser = optparse.OptionParser()
     parser.add_option("-f", "--folder", dest="folder",

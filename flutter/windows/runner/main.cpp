@@ -24,11 +24,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
     std::cout << "Failed to load libsodesk.dll" << std::endl;
     return EXIT_FAILURE;
   }
-  FUNC_RUSTDESK_CORE_MAIN rustdesk_core_main =
-      (FUNC_RUSTDESK_CORE_MAIN)GetProcAddress(hInstance, "rustdesk_core_main");
-  if (!rustdesk_core_main)
+  FUNC_RUSTDESK_CORE_MAIN sodesk_core_main =
+      (FUNC_RUSTDESK_CORE_MAIN)GetProcAddress(hInstance, "sodesk_core_main");
+  if (!sodesk_core_main)
   {
-    std::cout << "Failed to get rustdesk_core_main" << std::endl;
+    std::cout << "Failed to get sodesk_core_main" << std::endl;
     return EXIT_FAILURE;
   }
   FUNC_RUSTDESK_FREE_ARGS free_c_args =
@@ -42,7 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
       GetCommandLineArguments();
 
   int args_len = 0;
-  char** c_args = rustdesk_core_main(&args_len);
+  char** c_args = sodesk_core_main(&args_len);
   if (!c_args)
   {
     std::cout << "Rustdesk core returns false, exiting without launching Flutter app" << std::endl;
@@ -52,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   free_c_args(c_args, args_len);
 
   // uni links dispatch
-  // only do uni links when dispatch a rustdesk links
+  // only do uni links when dispatch a sodesk links
   auto prefix = std::string(uniLinksPrefix);
   if (!command_line_arguments.empty() && command_line_arguments.front().compare(0, prefix.size(), prefix.c_str()) == 0) {
      HWND hwnd = ::FindWindow(_T("FLUTTER_RUNNER_WIN32_WINDOW"), _T("RustDesk"));

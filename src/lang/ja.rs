@@ -282,7 +282,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Overwrite", "上書き"),
         ("This file exists, skip or overwrite this file?", "このファイルは存在しています。スキップするか上書きしますか？"),
         ("Quit", "終了"),
-        ("doc_mac_permission", "https://rustdesk.com/docs/en/manual/mac/#enable-permissions"), // @TODO: Update url when someone translates the docum"),
+        ("doc_mac_permission", "https://sodesk.com/docs/en/manual/mac/#enable-permissions"), // @TODO: Update url when someone translates the docum"),
         ("Help", "ヘルプ"),
         ("Failed", "失敗"),
         ("Succeeded", "成功"),
