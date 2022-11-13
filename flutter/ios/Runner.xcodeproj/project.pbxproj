@@ -10,7 +10,7 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		7E078EE926BAB4720036E738 /* liblibrustdesk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E078EE826BAB4710036E738 /* liblibrustdesk.a */; };
+		7E078EE926BAB4720036E738 /* liblibsodesk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E078EE826BAB4710036E738 /* liblibsodesk.a */; };
 		7E078EEC26BADB3D0036E738 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E078EEB26BADB3D0036E738 /* GoogleService-Info.plist */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		7B0BE50AED65C219B81E506C /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		7E078EE826BAB4710036E738 /* liblibrustdesk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibrustdesk.a; path = "../../target/aarch64-apple-ios/release/liblibrustdesk.a"; sourceTree = "<group>"; };
+		7E078EE826BAB4710036E738 /* liblibsodesk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibsodesk.a; path = "../../target/aarch64-apple-ios/release/liblibsodesk.a"; sourceTree = "<group>"; };
 		7E078EEA26BABB100036E738 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
 		7E078EEB26BADB3D0036E738 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E0A73A826CAB3C100FF94B3 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E078EE926BAB4720036E738 /* liblibrustdesk.a in Frameworks */,
+				7E078EE926BAB4720036E738 /* liblibsodesk.a in Frameworks */,
 				C362FA62593C0A953D788A2B /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,7 +129,7 @@
 		9F474765C702311B2610E104 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7E078EE826BAB4710036E738 /* liblibrustdesk.a */,
+				7E078EE826BAB4710036E738 /* liblibsodesk.a */,
 				D81DD31BD179189F3EA0124A /* Pods_Runner.framework */,
 			);
 			name = Frameworks;

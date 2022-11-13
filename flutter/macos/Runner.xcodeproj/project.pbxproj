@@ -27,8 +27,8 @@
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
 		C5E54335B73C89F72DB1B606 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C84465887F29AE938039CB /* Pods_Runner.framework */; };
-		CC13D44B2847D53E00EF8B54 /* librustdesk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC13D4362847C8C200EF8B54 /* librustdesk.dylib */; };
-		CC13D4502847D5E800EF8B54 /* librustdesk.dylib in Bundle Framework */ = {isa = PBXBuildFile; fileRef = CC13D4362847C8C200EF8B54 /* librustdesk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CC13D44B2847D53E00EF8B54 /* libsodesk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CC13D4362847C8C200EF8B54 /* libsodesk.dylib */; };
+		CC13D4502847D5E800EF8B54 /* libsodesk.dylib in Bundle Framework */ = {isa = PBXBuildFile; fileRef = CC13D4362847C8C200EF8B54 /* libsodesk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,14 +44,14 @@
 			containerPortal = CC13D42E2847C8C200EF8B54 /* rustdesk.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA6071B5A0F5A7A3EF2297AA;
-			remoteInfo = "librustdesk-cdylib";
+			remoteInfo = "libsodesk-cdylib";
 		};
 		CC13D4372847C8C200EF8B54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CC13D42E2847C8C200EF8B54 /* rustdesk.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CA604C7415FB2A3731F5016A;
-			remoteInfo = "librustdesk-staticlib";
+			remoteInfo = "libsodesk-staticlib";
 		};
 		CC13D4392847C8C200EF8B54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -72,7 +72,7 @@
 			containerPortal = CC13D42E2847C8C200EF8B54 /* rustdesk.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = CA6071B5A0F5D6691E4C3FF1;
-			remoteInfo = "librustdesk-cdylib";
+			remoteInfo = "libsodesk-cdylib";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -83,7 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CC13D4502847D5E800EF8B54 /* librustdesk.dylib in Bundle Framework */,
+				CC13D4502847D5E800EF8B54 /* libsodesk.dylib in Bundle Framework */,
 			);
 			name = "Bundle Framework";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC13D44B2847D53E00EF8B54 /* librustdesk.dylib in Frameworks */,
+				CC13D44B2847D53E00EF8B54 /* libsodesk.dylib in Frameworks */,
 				C5E54335B73C89F72DB1B606 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,8 +208,8 @@
 		CC13D42F2847C8C200EF8B54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC13D4362847C8C200EF8B54 /* librustdesk.dylib */,
-				CC13D4382847C8C200EF8B54 /* liblibrustdesk_static.a */,
+				CC13D4362847C8C200EF8B54 /* libsodesk.dylib */,
+				CC13D4382847C8C200EF8B54 /* liblibsodesk_static.a */,
 				CC13D43A2847C8C200EF8B54 /* naming */,
 				CC13D43C2847C8C200EF8B54 /* rustdesk */,
 			);
@@ -302,17 +302,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		CC13D4362847C8C200EF8B54 /* librustdesk.dylib */ = {
+		CC13D4362847C8C200EF8B54 /* libsodesk.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = librustdesk.dylib;
+			path = libsodesk.dylib;
 			remoteRef = CC13D4352847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CC13D4382847C8C200EF8B54 /* liblibrustdesk_static.a */ = {
+		CC13D4382847C8C200EF8B54 /* liblibsodesk_static.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibrustdesk_static.a;
+			path = liblibsodesk_static.a;
 			remoteRef = CC13D4372847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -444,7 +444,7 @@
 		};
 		CC13D43E2847C8CB00EF8B54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "librustdesk-cdylib";
+			name = "libsodesk-cdylib";
 			targetProxy = CC13D43D2847C8CB00EF8B54 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */

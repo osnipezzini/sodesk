@@ -273,14 +273,14 @@ def build_flutter_arch_manjaro(version, features):
     ffi_bindgen_function_refactor()
     os.chdir('flutter')
     os.system('flutter build linux --release')
-    os.system('strip build/linux/x64/release/bundle/lib/librustdesk.so')
+    os.system('strip build/linux/x64/release/bundle/lib/libsodesk.so')
     os.chdir('../res')
     os.system('HBB=`pwd`/.. FLUTTER=1 makepkg -f')
 
 
 def build_flutter_windows(version, features):
     os.system(f'cargo build --features {features} --lib --release')
-    if not os.path.exists("target/release/librustdesk.dll"):
+    if not os.path.exists("target/release/libsodesk.dll"):
         print("cargo build failed, please check rust source code.")
         exit(-1)
     os.chdir('flutter')

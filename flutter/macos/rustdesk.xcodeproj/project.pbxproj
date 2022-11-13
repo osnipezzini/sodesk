@@ -33,8 +33,8 @@
 
 /* Begin PBXFileReference section */
 		ADDEDBA66A6E1 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		CA604C7415FB2A3731F5016A /* liblibrustdesk_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibrustdesk_static.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA6071B5A0F5A7A3EF2297AA /* librustdesk.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = librustdesk.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA604C7415FB2A3731F5016A /* liblibsodesk_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibsodesk_static.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA6071B5A0F5A7A3EF2297AA /* libsodesk.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsodesk.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA60D3BC5386B357B2AB834F /* rustdesk */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rustdesk; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA60D3BC5386D3D7DBD96893 /* naming */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = naming; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -51,8 +51,8 @@
 		CA603C4309E122869D176AE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA6071B5A0F5A7A3EF2297AA /* librustdesk.dylib */,
-				CA604C7415FB2A3731F5016A /* liblibrustdesk_static.a */,
+				CA6071B5A0F5A7A3EF2297AA /* libsodesk.dylib */,
+				CA604C7415FB2A3731F5016A /* liblibsodesk_static.a */,
 				CA60D3BC5386D3D7DBD96893 /* naming */,
 				CA60D3BC5386B357B2AB834F /* rustdesk */,
 			);
@@ -79,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CA604C7415FB12977AAB839F /* librustdesk-staticlib */ = {
+		CA604C7415FB12977AAB839F /* libsodesk-staticlib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA6028B9540B12977AAB839F /* Build configuration list for PBXNativeTarget "librustdesk-staticlib" */;
+			buildConfigurationList = CA6028B9540B12977AAB839F /* Build configuration list for PBXNativeTarget "libsodesk-staticlib" */;
 			buildPhases = (
 				CA6033723F8212977AAB839F /* Sources */,
 				CA603C4309E1AF6EBB7F357C /* Universal Binary lipo */,
@@ -91,14 +91,14 @@
 			);
 			dependencies = (
 			);
-			name = "librustdesk-staticlib";
-			productName = liblibrustdesk_static.a;
-			productReference = CA604C7415FB2A3731F5016A /* liblibrustdesk_static.a */;
+			name = "libsodesk-staticlib";
+			productName = liblibsodesk_static.a;
+			productReference = CA604C7415FB2A3731F5016A /* liblibsodesk_static.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		CA6071B5A0F5D6691E4C3FF1 /* librustdesk-cdylib */ = {
+		CA6071B5A0F5D6691E4C3FF1 /* libsodesk-cdylib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA6028B9540BD6691E4C3FF1 /* Build configuration list for PBXNativeTarget "librustdesk-cdylib" */;
+			buildConfigurationList = CA6028B9540BD6691E4C3FF1 /* Build configuration list for PBXNativeTarget "libsodesk-cdylib" */;
 			buildPhases = (
 				CA6033723F82D6691E4C3FF1 /* Sources */,
 				CA603C4309E1AF6EBB7F357C /* Universal Binary lipo */,
@@ -108,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = "librustdesk-cdylib";
-			productName = librustdesk.dylib;
-			productReference = CA6071B5A0F5A7A3EF2297AA /* librustdesk.dylib */;
+			name = "libsodesk-cdylib";
+			productName = libsodesk.dylib;
+			productReference = CA6071B5A0F5A7A3EF2297AA /* libsodesk.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		CA60D3BC5386C858B7409EE3 /* naming-bin */ = {
@@ -186,8 +186,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CA6071B5A0F5D6691E4C3FF1 /* librustdesk-cdylib */,
-				CA604C7415FB12977AAB839F /* librustdesk-staticlib */,
+				CA6071B5A0F5D6691E4C3FF1 /* libsodesk-cdylib */,
+				CA604C7415FB12977AAB839F /* libsodesk-staticlib */,
 				CA60D3BC5386C858B7409EE3 /* naming-bin */,
 				CA60D3BC5386C9FA710A2219 /* rustdesk-bin */,
 			);
@@ -256,12 +256,12 @@
 		CA604B55B26012977AAB839F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibrustdesk.d;
-				CARGO_XCODE_CARGO_FILE_NAME = liblibrustdesk.a;
+				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibsodesk.d;
+				CARGO_XCODE_CARGO_FILE_NAME = liblibsodesk.a;
 				INSTALL_GROUP = "";
 				INSTALL_MODE_FLAG = "";
 				INSTALL_OWNER = "";
-				PRODUCT_NAME = librustdesk_static;
+				PRODUCT_NAME = libsodesk_static;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos appletvsimulator appletvos";
 			};
@@ -290,9 +290,9 @@
 		CA604B55B260D6691E4C3FF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibrustdesk.d;
-				CARGO_XCODE_CARGO_FILE_NAME = liblibrustdesk.dylib;
-				PRODUCT_NAME = librustdesk;
+				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibsodesk.d;
+				CARGO_XCODE_CARGO_FILE_NAME = liblibsodesk.dylib;
+				PRODUCT_NAME = libsodesk;
 				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Debug;
@@ -300,12 +300,12 @@
 		CA60583BB9CE12977AAB839F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibrustdesk.d;
-				CARGO_XCODE_CARGO_FILE_NAME = liblibrustdesk.a;
+				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibsodesk.d;
+				CARGO_XCODE_CARGO_FILE_NAME = liblibsodesk.a;
 				INSTALL_GROUP = "";
 				INSTALL_MODE_FLAG = "";
 				INSTALL_OWNER = "";
-				PRODUCT_NAME = librustdesk_static;
+				PRODUCT_NAME = libsodesk_static;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos appletvsimulator appletvos";
 			};
@@ -334,9 +334,9 @@
 		CA60583BB9CED6691E4C3FF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibrustdesk.d;
-				CARGO_XCODE_CARGO_FILE_NAME = liblibrustdesk.dylib;
-				PRODUCT_NAME = librustdesk;
+				CARGO_XCODE_CARGO_DEP_FILE_NAME = liblibsodesk.d;
+				CARGO_XCODE_CARGO_FILE_NAME = liblibsodesk.dylib;
+				PRODUCT_NAME = libsodesk;
 				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Release;
@@ -387,7 +387,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CA6028B9540B12977AAB839F /* Build configuration list for PBXNativeTarget "librustdesk-staticlib" */ = {
+		CA6028B9540B12977AAB839F /* Build configuration list for PBXNativeTarget "libsodesk-staticlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA60583BB9CE12977AAB839F /* Release */,
@@ -414,7 +414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA6028B9540BD6691E4C3FF1 /* Build configuration list for PBXNativeTarget "librustdesk-cdylib" */ = {
+		CA6028B9540BD6691E4C3FF1 /* Build configuration list for PBXNativeTarget "libsodesk-cdylib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA60583BB9CED6691E4C3FF1 /* Release */,

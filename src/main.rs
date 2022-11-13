@@ -2,7 +2,7 @@
 // Requires Rust 1.18.
 //#![windows_subsystem = "windows"]
 
-use librustdesk::*;
+use libsodesk::*;
 
 #[cfg(any(target_os = "android", target_os = "ios"))]
 fn main() {
