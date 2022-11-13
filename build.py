@@ -11,8 +11,10 @@ import argparse
 
 windows = platform.platform().startswith('Windows')
 osx = platform.platform().startswith('Darwin') or platform.platform().startswith("macOS")
-hbb_name = 'sodesk' + ('.exe' if windows else '')
-hbb_name_case = 'SODesk' + ('.exe' if windows else '')
+name = 'sodesk'
+name_cased = 'SODesk'
+hbb_name = name + ('.exe' if windows else '')
+hbb_name_case = name_cased + ('.exe' if windows else '')
 exe_path = 'target/release/' + hbb_name
 python_exe = 'python' if windows else 'python3'
 pip_exe = 'pip' if windows else 'pip3'
@@ -257,12 +259,12 @@ def build_flutter_deb(version, features):
     os.system('mkdir -p tmpdeb/DEBIAN')
     generate_control_file(version)
     os.system('cp -a ../res/DEBIAN/* tmpdeb/DEBIAN/')
-    md5_file(f'usr/share/{hbb_name}/files/systemd/{hbb_name}.service')
-    os.system(f'dpkg-deb -b tmpdeb {hbb_name}.deb;')
+    md5_file(f'usr/share/{name}/files/systemd/{name}.service')
+    os.system(f'dpkg-deb -b tmpdeb {name}.deb;')
 
     os.system('/bin/rm -rf tmpdeb/')
     os.system('/bin/rm -rf ../res/DEBIAN/control')
-    os.rename(f'{hbb_name}.deb', f'../{hbb_name}-%s.deb' % version)
+    os.rename(f'{name}.deb', f'../{name}-%s.deb' % version)
     os.chdir("..")
 
 
@@ -286,21 +288,17 @@ def build_flutter_windows(version, features):
     os.chdir('..')    
     os.chdir('libs/portable')
     os.system(f'{pip_exe} install -r requirements.txt')
-    if flutter_win_target_dir.joinpath('rustdesk.exe').exists():
-        flutter_win_target_dir.joinpath('rustdesk.exe').rename(flutter_win_target_dir.joinpath(f'{hbb_name}.exe'))
     os.system(
-        f'{python_exe} ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/{hbb_name}.exe')
+        f'{python_exe} ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/{hbb_name}')
     os.chdir('../..')
     print('Finalizado geração do portable')
-    if flutter_win_target_dir.joinpath('./target/release/rustdesk-portable-packer.exe').exists():
-        flutter_win_target_dir.joinpath('./target/release/rustdesk-portable-packer.exe').rename(flutter_win_target_dir.joinpath(flutter_win_target_dir.joinpath(f'./target/release/{hbb_name}-portable-packer.exe')))
-    if os.path.exists(f'./{hbb_name}_portable.exe'):
-        os.replace(f'./target/release/{hbb_name}-portable-packer.exe', f'./{hbb_name}_portable.exe')
+    if os.path.exists(f'./{name}_portable.exe'):
+        os.replace(f'./target/release/{name}-portable-packer.exe', f'./{name}_portable.exe')
     else:
-        os.rename(f'./target/release/{hbb_name}-portable-packer.exe', f'./{hbb_name}_portable.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/{hbb_name}_portable.exe')
-    os.rename(f'./{hbb_name}_portable.exe', f'./{hbb_name}-{version}-install.exe')
-    print(f'output location: {os.path.abspath(os.curdir)}/{hbb_name}-{version}-install.exe')
+        os.rename(f'./target/release/{name}-portable-packer.exe', f'./{name}_portable.exe')
+    print(f'output location: {os.path.abspath(os.curdir)}/{name}_portable.exe')
+    os.rename(f'./{name}_portable.exe', f'./{name}-{version}-install.exe')
+    print(f'output location: {os.path.abspath(os.curdir)}/{name}-{version}-install.exe')
 
 
 def main():
@@ -329,15 +327,15 @@ def main():
             return
         os.system('cargo build --release --features ' + features)
         # os.system('upx.exe target/release/rustdesk.exe')
-        os.system(f'mv target/release/{hbb_name}.exe target/release/{hbb_name_case}.exe')
+        os.system(f'mv target/release/{name}.exe target/release/{name_cased}')
         pa = os.environ.get('P')
         if pa:
             os.system(
                 f'signtool sign /a /v /p {pa} /debug /f .\\cert.pfx /t http://timestamp.digicert.com  '
-                f'target\\release\\{hbb_name}.exe')
+                f'target\\release\\{name}.exe')
         else:
             print('Not signed')
-        os.system(f'cp -rf target/release/{hbb_name_case}.exe {hbb_name}-{version}-win7-install.exe')
+        os.system(f'cp -rf target/release/{name_cased}.exe {name}-{version}-win7-install.exe')
     elif os.path.isfile('/usr/bin/pacman'):
         # pacman -S -needed base-devel
         os.system("sed -i 's/pkgver=.*/pkgver=%s/g' res/PKGBUILD" % version)
