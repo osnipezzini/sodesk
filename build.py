@@ -287,7 +287,7 @@ def build_flutter_windows(version, features):
     os.chdir('libs/portable')
     os.system(f'{pip_exe} install -r requirements.txt')
     if flutter_win_target_dir.joinpath('rustdesk.exe').exists():
-        flutter_win_target_dir.joinpath('rustdesk.exe').rename(flutter_win_target_dir.joinpath(hbb_name))
+        flutter_win_target_dir.joinpath('rustdesk.exe').rename(flutter_win_target_dir.joinpath(f'{hbb_name}.exe'))
     os.system(
         f'{python_exe} ./generate.py -f ../../{flutter_win_target_dir} -o . -e ../../{flutter_win_target_dir}/{hbb_name}.exe')
     os.chdir('../..')
