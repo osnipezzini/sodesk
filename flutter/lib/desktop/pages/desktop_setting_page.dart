@@ -1046,10 +1046,12 @@ class _AboutState extends State<_About> {
     return _futureBuilder(future: () async {
       final license = await bind.mainGetLicense();
       final version = await bind.mainGetVersion();
-      return {'license': license, 'version': version};
+      final buildDate = await bind.mainGetBuildDate();
+      return {'license': license, 'version': version, 'buildDate': buildDate};
     }(), hasData: (data) {
       final license = data['license'].toString();
       final version = data['version'].toString();
+      final buildDate = data['buildDate'].toString();
       const linkStyle = TextStyle(decoration: TextDecoration.underline);
       final scrollController = ScrollController();
       return DesktopScrollWrapper(
@@ -1065,6 +1067,7 @@ class _AboutState extends State<_About> {
                     height: 8.0,
                   ),
                   Text('Version: $version').marginSymmetric(vertical: 4.0),
+                  Text('Build Date: $buildDate').marginSymmetric(vertical: 4.0),
                   InkWell(
                       onTap: () {
                         launchUrlString('https://rustdesk.com/privacy');
@@ -1092,7 +1095,7 @@ class _AboutState extends State<_About> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Copyright &copy; 2022 Purslane Ltd.\n$license',
+                                'Copyright © 2022 Purslane Ltd.\n$license',
                                 style: const TextStyle(color: Colors.white),
                               ),
                               const Text(
