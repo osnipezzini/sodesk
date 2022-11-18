@@ -18,10 +18,10 @@ const char* uniLinksPrefix = "sodesk://";
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command)
 {
-  HINSTANCE hInstance = LoadLibraryA("librustdesk.dll");
+  HINSTANCE hInstance = LoadLibraryA("libsodesk.dll");
   if (!hInstance)
   {
-    std::cout << "Failed to load librustdesk.dll" << std::endl;
+    std::cout << "Failed to load libsodesk.dll" << std::endl;
     return EXIT_FAILURE;
   }
   FUNC_RUSTDESK_CORE_MAIN rustdesk_core_main =
@@ -55,7 +55,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   // only do uni links when dispatch a rustdesk links
   auto prefix = std::string(uniLinksPrefix);
   if (!command_line_arguments.empty() && command_line_arguments.front().compare(0, prefix.size(), prefix.c_str()) == 0) {
-     HWND hwnd = ::FindWindow(_T("FLUTTER_RUNNER_WIN32_WINDOW"), _T("RustDesk"));
+     HWND hwnd = ::FindWindow(_T("FLUTTER_RUNNER_WIN32_WINDOW"), _T("SODesk"));
     if (hwnd != NULL) {
       DispatchToUniLinksDesktop(hwnd);
 
@@ -88,7 +88,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(800, 600);
-  if (!window.CreateAndShow(L"RustDesk", origin, size, showOnTaskBar))
+  if (!window.CreateAndShow(L"SODesk", origin, size, showOnTaskBar))
   {
     return EXIT_FAILURE;
   }

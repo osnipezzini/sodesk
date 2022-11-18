@@ -39,7 +39,7 @@ jobs:
           channel: 'stable'
           flutter-version: ${{ env.FLUTTER_VERSION }}
       
-      - name: Replace engine with rustdesk custom flutter engine
+      - name: Replace engine with sodesk custom flutter engine
         run: |
           flutter doctor -v
           flutter precache --windows
@@ -82,13 +82,13 @@ jobs:
           $VCPKG_ROOT/vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static
         shell: bash
 
-      - name: Build rustdesk
+      - name: Build sodesk
         run: python3 .\build.py --portable --hwcodec --flutter
 
-      - name: Rename rustdesk
+      - name: Rename sodesk
         shell: bash
         run: |
-          for name in rustdesk*??-install.exe; do
+          for name in sodesk*??-install.exe; do
               mv "$name" "${name%%-install.exe}-${{ matrix.job.target }}.exe"
           done
 
@@ -98,5 +98,5 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            rustdesk-*.exe
+            sodesk-*.exe
 

@@ -379,7 +379,7 @@ class LoginWidgetUserPass extends StatelessWidget {
               height: 38,
               padding: kMidButtonPadding,
               child: Obx(() => ElevatedButton(
-                    style: curOP.value.isEmpty || curOP.value == 'rustdesk'
+                    style: curOP.value.isEmpty || curOP.value == 'sodesk'
                         ? null
                         : ElevatedButton.styleFrom(
                             primary: Colors.grey,
@@ -388,7 +388,7 @@ class LoginWidgetUserPass extends StatelessWidget {
                       translate('Login'),
                       style: TextStyle(fontSize: 16),
                     ),
-                    onPressed: curOP.value.isEmpty || curOP.value == 'rustdesk'
+                    onPressed: curOP.value.isEmpty || curOP.value == 'sodesk'
                         ? () {
                             onLogin(userController.text, pwdController.text);
                           }
@@ -435,7 +435,7 @@ Future<bool> loginDialog() async {
         }
       }
 
-      curOP.value = 'rustdesk';
+      curOP.value = 'sodesk';
       username = username0;
       pass = pass0;
       if (username.isEmpty) {

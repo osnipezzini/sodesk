@@ -98,13 +98,13 @@ jobs:
           cargo -V
           rustc -V
 
-      - name: Build rustdesk
+      - name: Build sodesk
         run: ./build.py --flutter --hwcodec ${{ matrix.job.extra-build-args }}
 
-      - name: Rename rustdesk
+      - name: Rename sodesk
         shell: bash
         run: |
-          for name in rustdesk*??.deb; do
+          for name in sodesk*??.deb; do
               mv "$name" "${name%%.deb}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb"
           done
 
@@ -114,14 +114,14 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
+            sodesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
       
       - name: Upload Artifcat
         uses: actions/upload-artifact@master
         if: ${{ contains(matrix.job.extra-build-args, 'flatpak') }}
         with:
-          name: rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
-          path: rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
+          name: sodesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
+          path: sodesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
 
       - name: Build archlinux package
         if: ${{ matrix.job.extra-build-args == '' }}
@@ -165,7 +165,7 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            res/rustdesk*.zst
+            res/sodesk*.zst
 
       # - name: build RPM package
       #   id: rpm
@@ -209,12 +209,12 @@ jobs:
       - name: Download Binary
         uses: actions/download-artifact@master
         with:
-          name: rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
+          name: sodesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb
           path: .
         
       - name: Rename Binary  
         run: |
-          mv rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb rustdesk-${{ env.VERSION }}.deb
+          mv sodesk-${{ env.VERSION }}-${{ matrix.job.target }}-${{ matrix.job.os }}.deb sodesk-${{ env.VERSION }}.deb
       
       - name: Install Flatpak deps
         run: |
@@ -226,8 +226,8 @@ jobs:
         run: |
           pushd flatpak
           git clone https://github.com/flathub/shared-modules.git --depth=1
-          flatpak-builder --user --force-clean --repo=repo ./build ./rustdesk.json
-          flatpak build-bundle ./repo rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}.flatpak org.rustdesk.rustdesk
+          flatpak-builder --user --force-clean --repo=repo ./build ./sodesk.json
+          flatpak build-bundle ./repo sodesk-${{ env.VERSION }}-${{ matrix.job.target }}.flatpak xyz.sotech.sodesk
 
       - name: Publish flatpak package
         uses: softprops/action-gh-release@v1
@@ -235,5 +235,5 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            flatpak/rustdesk-${{ env.VERSION }}-${{ matrix.job.target }}.flatpak
+            flatpak/sodesk-${{ env.VERSION }}-${{ matrix.job.target }}.flatpak
 

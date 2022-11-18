@@ -305,14 +305,14 @@
 		CC13D4362847C8C200EF8B54 /* librustdesk.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = librustdesk.dylib;
+			path = libsodesk.dylib;
 			remoteRef = CC13D4352847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CC13D4382847C8C200EF8B54 /* liblibrustdesk_static.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibrustdesk_static.a;
+			path = liblibsodesk_static.a;
 			remoteRef = CC13D4372847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -323,10 +323,10 @@
 			remoteRef = CC13D4392847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CC13D43C2847C8C200EF8B54 /* rustdesk */ = {
+		CC13D43C2847C8C200EF8B54 /* sodesk */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = rustdesk;
+			path = sodesk;
 			remoteRef = CC13D43B2847C8C200EF8B54 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -444,7 +444,7 @@
 		};
 		CC13D43E2847C8CB00EF8B54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "librustdesk-cdylib";
+			name = "libsodesk-cdylib";
 			targetProxy = CC13D43D2847C8CB00EF8B54 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */

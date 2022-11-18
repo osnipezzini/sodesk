@@ -270,10 +270,10 @@ fn core_main_invoke_new_connection(mut args: std::env::Args) -> Option<Vec<Strin
     #[cfg(windows)]
     {
         use winapi::um::winuser::WM_USER;
-        let uni_links = format!("rustdesk://connection/new/{}", peer_id);
+        let uni_links = format!("sodesk://connection/new/{}", peer_id);
         let res = crate::platform::send_message_to_hnwd(
             "FLUTTER_RUNNER_WIN32_WINDOW",
-            "RustDesk",
+            "SODesk",
             (WM_USER + 2) as _, // refered from unilinks desktop pub
             uni_links.as_str(),
             true

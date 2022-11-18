@@ -4351,7 +4351,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rustdesk"
+name = "sodesk"
 version = "1.2.0"
 dependencies = [
  "android_logger 0.11.1",
@@ -4435,7 +4435,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rustdesk-portable-packer"
+name = "sodesk-portable-packer"
 version = "0.1.0"
 dependencies = [
  "brotli",

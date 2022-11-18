@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=SODeskURL Scheme Handler
+NoDisplay=true
+MimeType=x-scheme-handler/sodesk;
+TryExec=sodesk
+Exec=sodesk --connect "%u"
+Icon=sodesk
+Terminal=false
+Type=Application
+StartupNotify=false
+Version=1.5

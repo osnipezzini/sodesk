@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.2.0
-Name=RustDesk
+Name=SODesk
 GenericName=Remote Desktop
 Comment=Remote Desktop
-Exec=rustdesk %u
-Icon=/usr/share/rustdesk/files/rustdesk.png
+Exec=sodesk %u
+Icon=/usr/share/sodesk/files/sodesk.png
 Terminal=false
 Type=Application
 StartupNotify=true

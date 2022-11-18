@@ -10,7 +10,7 @@ use std::{error::Error, fmt, time::Duration};
 #[cfg(feature = "flutter")]
 use std::collections::HashMap;
 
-const DBUS_NAME: &str = "org.rustdesk.rustdesk";
+const DBUS_NAME: &str = "xyz.sotech.sodesk";
 const DBUS_PREFIX: &str = "/dbus";
 const DBUS_METHOD_NEW_CONNECTION: &str = "NewConnection";
 const DBUS_METHOD_NEW_CONNECTION_ID: &str = "id";

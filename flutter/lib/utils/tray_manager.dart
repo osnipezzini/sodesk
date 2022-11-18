@@ -9,7 +9,7 @@ const kTrayItemQuitKey = "quit";
 
 Future<void> initTray({List<MenuItem>? extra_item}) async {
   List<MenuItem> items = [
-    MenuItem(key: kTrayItemShowKey, label: translate("Show RustDesk")),
+    MenuItem(key: kTrayItemShowKey, label: translate("Show SODesk")),
     MenuItem.separator(),
     MenuItem(key: kTrayItemQuitKey, label: translate("Quit")),
   ];
@@ -17,10 +17,10 @@ Future<void> initTray({List<MenuItem>? extra_item}) async {
     items.insertAll(0, extra_item);
   }
   if (Platform.isMacOS || Platform.isWindows) {
-    await trayManager.setToolTip("rustdesk");
+    await trayManager.setToolTip("sodesk");
   }
   if (Platform.isMacOS || Platform.isLinux) {
-    await trayManager.setTitle("rustdesk");
+    await trayManager.setTitle("sodesk");
   }
   await trayManager
       .setIcon(Platform.isWindows ? "assets/logo.ico" : "assets/logo.png");

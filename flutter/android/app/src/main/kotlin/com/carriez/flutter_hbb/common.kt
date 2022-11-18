@@ -1,4 +1,4 @@
-package com.carriez.flutter_hbb
+package xyz.sotech.flutter_hbb
 
 import android.annotation.SuppressLint
 import android.content.Context
