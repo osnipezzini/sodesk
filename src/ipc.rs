@@ -117,6 +117,7 @@ pub enum DataMouse {
     Click(enigo::MouseButton),
     ScrollX(i32),
     ScrollY(i32),
+    Refresh,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -128,6 +129,19 @@ pub enum DataControl {
         miny: i32,
         maxy: i32,
     },
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(tag = "t", content = "c")]
+pub enum DataPortableService {
+    Ping,
+    Pong,
+    ConnCount(Option<usize>),
+    Mouse(Vec<u8>),
+    Key(Vec<u8>),
+    RequestStart,
+    WillClose,
+    CmShowElevation(bool),
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -187,6 +201,7 @@ pub enum Data {
     Language(String),
     Empty,
     Disconnected,
+    DataPortableService(DataPortableService),
 }
 
 #[tokio::main(flavor = "current_thread")]

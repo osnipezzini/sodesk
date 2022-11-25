@@ -8,9 +8,12 @@ on:
 
 env:
   LLVM_VERSION: "10.0"
+  # Note: currently 3.0.5 does not support arm64 officially, we use latest stable version first.
   FLUTTER_VERSION: "3.0.5"
   TAG_NAME: "nightly"
-  VCPKG_COMMIT_ID: '6ca56aeb457f033d344a7106cb3f9f1abf8f4e98'
+  # vcpkg version: 2022.05.10
+  # for multiarch gcc compatibility
+  VCPKG_COMMIT_ID: "14e7bb4ae24616ec54ff6b2f6ef4e8659434ea44"
   VERSION: "1.2.0"
 
 jobs:
@@ -23,7 +26,7 @@ jobs:
         job:
           # - { target: i686-pc-windows-msvc        , os: windows-2019                  }
           # - { target: x86_64-pc-windows-gnu       , os: windows-2019                  }
-          - { target: x86_64-pc-windows-msvc      , os: windows-2019 }
+          - { target: x86_64-pc-windows-msvc, os: windows-2019 }
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -36,9 +39,9 @@ jobs:
       - name: Install flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      
+
       - name: Replace engine with rustdesk custom flutter engine
         run: |
           flutter doctor -v
@@ -82,13 +85,13 @@ jobs:
           $VCPKG_ROOT/vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static
         shell: bash
 
-      - name: Build rustdesk
+      - name: Build sodesk
         run: python3 .\build.py --portable --hwcodec --flutter
 
-      - name: Rename rustdesk
+      - name: Rename sodesk
         shell: bash
         run: |
-          for name in rustdesk*??-install.exe; do
+          for name in sodesk*??-install.exe; do
               mv "$name" "${name%%-install.exe}-${{ matrix.job.target }}.exe"
           done
 
@@ -98,5 +101,5 @@ jobs:
           prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           files: |
-            rustdesk-*.exe
+            sodesk-*.exe
 
